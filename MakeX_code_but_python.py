@@ -1,3 +1,4 @@
+# codes make you happy
 import novapi
 from mbuild import power_expand_board
 from mbuild.encoder_motor import encoder_motor_class
@@ -9,7 +10,8 @@ from mbuild import gamepad
 import mbuild, math
 import time
 
-# initialize variables
+
+      
 Position = 0
 press = 0
 Ranging_distance = 0
@@ -39,8 +41,20 @@ miss = 0
 left = 0
 right = 0
 click = 0
+miki = 0
 
+# ileft = 1
+right = -1
+smart_camera_1.set_mode("color")
+phrase1_finish = 0
+if power_manage_module.is_auto_mode():
+  auto_def_()
 
+else:
+  while True:
+      time.sleep(0.001)
+      Manual()nitialize variables
+      
 # new class
 encoder_motor_M1 = encoder_motor_class("M1", "INDEX1")
 encoder_motor_M4 = encoder_motor_class("M4", "INDEX1")
@@ -270,12 +284,12 @@ def claw_getblock_N(startfrom):
     claw_N___1__unclaw___1__claw(-1)
     power_expand_board.set_power("DC4", -100)
     time.sleep(0.5)
-    _E0_B9_80_E0_B8_89_E0_B8_B5_E0_B8_A2_E0_B8_87_E0_B8_82_E0_B8_A7_E0_B8_B2_N(200)
+    Diagonally_right_N(200)
     if startfrom == left:
-      _E0_B9_80_E0_B8_89_E0_B8_B5_E0_B8_A2_E0_B8_87_E0_B8_82_E0_B8_A7_E0_B8_B2_N(200)
+      Diagonally_right_N(200)
 
     else:
-      _E0_B9_80_E0_B8_89_E0_B8_B5_E0_B8_A2_E0_B8_87_E0_B8_8B_E0_B9_89_E0_B8_B2_E0_B8_A2_N(-200)
+      Diagonally_left_N(-200)
 
     time.sleep(0.7)
     Stopdrivetrain()
@@ -321,10 +335,10 @@ def shooting_Auto__N(startfrom):
     Forward2_N(60)
     time.sleep(0.5)
     if startfrom == left:
-      _E0_B9_80_E0_B8_89_E0_B8_B5_E0_B8_A2_E0_B8_87_E0_B8_82_E0_B8_A7_E0_B8_B2_N(160)
+      Diagonally_right_N(160)
 
     else:
-      _E0_B9_80_E0_B8_89_E0_B8_B5_E0_B8_A2_E0_B8_87_E0_B8_8B_E0_B9_89_E0_B8_B2_E0_B8_A2_N(150)
+      Diagonally_left_N(150)
 
     time.sleep(1.5)
     if startfrom == left:
@@ -366,14 +380,14 @@ def shooting_Auto__N(startfrom):
     power_expand_board.stop("BL2")
     encoder_motor_M6.set_speed(0)
 
-def _E0_B9_80_E0_B8_89_E0_B8_B5_E0_B8_A2_E0_B8_87_E0_B8_82_E0_B8_A7_E0_B8_B2_N(speed):
+def Diagonally_right_N(speed):
     global Position, press, Ranging_distance, Power, Power__, Turn_power, Turn_power__, Slide, Slide__, ps, _2, _3, Finish, d_ranging, base_speed, motor_speed, Max_speed, left_speed, right_speed, block, phrase1_finish, speed_, speed_2, M4_3EM1_speed, different_speed, miss, left, right, click, miki
     encoder_motor_M4.set_speed(0)
     encoder_motor_M3.set_speed((0 - speed))
     encoder_motor_M2.set_speed(speed)
     encoder_motor_M1.set_speed(0)
 
-def _E0_B9_80_E0_B8_89_E0_B8_B5_E0_B8_A2_E0_B8_87_E0_B8_8B_E0_B9_89_E0_B8_B2_E0_B8_A2_N(speed):
+def Diagonally_left_N(speed):
     global Position, press, Ranging_distance, Power, Power__, Turn_power, Turn_power__, Slide, Slide__, ps, _2, _3, Finish, d_ranging, base_speed, motor_speed, Max_speed, left_speed, right_speed, block, phrase1_finish, speed_, speed_2, M4_3EM1_speed, different_speed, miss, left, right, click, miki
     encoder_motor_M4.set_speed((0 - speed))
     encoder_motor_M3.set_speed(0)
@@ -419,6 +433,21 @@ def Rotate_N_N_time_speed(Time_s_, Speed):
         encoder_motor_M1.set_speed(Speed)
         encoder_motor_M4.set_speed(Speed)
         encoder_motor_M3.set_speed(Speed)
+
+def Across_N_N_right____left___(speed, Direction):
+    global Position, press, Ranging_distance, Power, Power__, Turn_power, Turn_power__, Slide, Slide__, ps, _2, _3, Finish, d_ranging, base_speed, motor_speed, Max_speed, left_speed, right_speed, block, phrase1_finish, speed_, speed_2, M4_3EM1_speed, different_speed, miss, left, right, click, miki
+    if Direction == 1:
+      encoder_motor_M4.set_speed(speed)
+      encoder_motor_M2.set_speed((0 - speed))
+      encoder_motor_M3.set_speed(0)
+      encoder_motor_M1.set_speed(0)
+
+    else:
+      if Direction == -1:
+        encoder_motor_M1.set_speed((0 - speed))
+        encoder_motor_M2.set_speed(0)
+        encoder_motor_M3.set_speed(speed)
+        encoder_motor_M4.set_speed(0)
 
 def claw_N___1__unclaw___1__claw(direction):
     global Position, press, Ranging_distance, Power, Power__, Turn_power, Turn_power__, Slide, Slide__, ps, _2, _3, Finish, d_ranging, base_speed, motor_speed, Max_speed, left_speed, right_speed, block, phrase1_finish, speed_, speed_2, M4_3EM1_speed, different_speed, miss, left, right, click, miki
@@ -566,11 +595,6 @@ def Slide2_N_right____left___(speed):
     encoder_motor_M4.set_speed(speed)
     encoder_motor_M3.set_speed(speed)
 
-def auto_right_():
-    global Position, press, Ranging_distance, Power, Power__, Turn_power, Turn_power__, Slide, Slide__, ps, _2, _3, Finish, d_ranging, base_speed, motor_speed, Max_speed, left_speed, right_speed, block, phrase1_finish, speed_, speed_2, M4_3EM1_speed, different_speed, miss, left, right, click, miki
-    # DO SOMETHING
-    pass
-
 def auto_def_():
     global Position, press, Ranging_distance, Power, Power__, Turn_power, Turn_power__, Slide, Slide__, ps, _2, _3, Finish, d_ranging, base_speed, motor_speed, Max_speed, left_speed, right_speed, block, phrase1_finish, speed_, speed_2, M4_3EM1_speed, different_speed, miss, left, right, click, miki
     Slide2_N_right____left___(120)
@@ -583,13 +607,18 @@ def auto_def_():
     time.sleep(0.1)
     Slide2_N_right____left___(120)
     time.sleep(0.5)
-    _E0_B8_84_E0_B8_B5_E0_B8_9B_but_DC_N(-70)
+    claw_but_DC_N(-70)
     time.sleep(1)
     Forward2_N(-120)
     time.sleep(1)
     Stopdrivetrain()
     Stop_DC()
     Stop_loadball()
+
+def auto_right_():
+    global Position, press, Ranging_distance, Power, Power__, Turn_power, Turn_power__, Slide, Slide__, ps, _2, _3, Finish, d_ranging, base_speed, motor_speed, Max_speed, left_speed, right_speed, block, phrase1_finish, speed_, speed_2, M4_3EM1_speed, different_speed, miss, left, right, click, miki
+    # DO SOMETHING
+    pass
 
 def GetMakeX_N(Startfrom):
     global Position, press, Ranging_distance, Power, Power__, Turn_power, Turn_power__, Slide, Slide__, ps, _2, _3, Finish, d_ranging, base_speed, motor_speed, Max_speed, left_speed, right_speed, block, phrase1_finish, speed_, speed_2, M4_3EM1_speed, different_speed, miss, left, right, click, miki
@@ -606,7 +635,7 @@ def auto_blox_():
 
     rotate_N_right____left___(90)
     time.sleep(1.5)
-    _E0_B8_9B_E0_B8_B1_E0_B9_88_E0_B8_99_E0_B8_81_E0_B8_A5_E0_B9_88_E0_B8_AD_E0_B8_87()
+    spinning_box()
     Forward2_N(-120)
     time.sleep(1)
     Slide2_N_right____left___(120)
@@ -677,24 +706,13 @@ def brushless_N_N(level, power):
       power_expand_board.set_power("BL1", power)
       power_expand_board.set_power("BL2", power)
 
-def _E0_B8_9B_E0_B8_B1_E0_B9_88_E0_B8_99_E0_B8_81_E0_B8_A5_E0_B9_88_E0_B8_AD_E0_B8_87():
+def spinning_box():
     global Position, press, Ranging_distance, Power, Power__, Turn_power, Turn_power__, Slide, Slide__, ps, _2, _3, Finish, d_ranging, base_speed, motor_speed, Max_speed, left_speed, right_speed, block, phrase1_finish, speed_, speed_2, M4_3EM1_speed, different_speed, miss, left, right, click, miki
     encoder_motor_M5.set_power(200)
     encoder_motor_M6.set_power(-200)
 
-def _E0_B8_84_E0_B8_B5_E0_B8_9B_but_DC_N(speed):
+def claw_but_DC_N(speed):
     global Position, press, Ranging_distance, Power, Power__, Turn_power, Turn_power__, Slide, Slide__, ps, _2, _3, Finish, d_ranging, base_speed, motor_speed, Max_speed, left_speed, right_speed, block, phrase1_finish, speed_, speed_2, M4_3EM1_speed, different_speed, miss, left, right, click, miki
     power_expand_board.set_power("DC6", speed)
 
-left = 1
-right = -1
-smart_camera_1.set_mode("color")
-phrase1_finish = 0
-if power_manage_module.is_auto_mode():
-  auto_def_()
-
-else:
-  while True:
-      time.sleep(0.001)
-      Manual()
 

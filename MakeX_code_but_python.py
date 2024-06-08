@@ -39,7 +39,7 @@ miss = 0
 left = 0
 right = 0
 click = 0
-miki = 0
+
 
 # new class
 encoder_motor_M1 = encoder_motor_class("M1", "INDEX1")
